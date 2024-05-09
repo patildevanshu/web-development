@@ -1,0 +1,35 @@
+h1 {
+    text-align: center;
+    font-size: 45px;
+    /* border: solid; */
+    /* width: 50%; */
+    text-decoration: greenyellow wavy underline;
+    letter-spacing: 5px;
+    font-family: papyrus , didot , sans-serif;
+}
+
+h2 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h3 {
+    text-decoration: white dotted line-through;
+}
+
+p {
+    font-weight: 400;
+    font-size: normal;
+    text-align: start;
+    line-height: normal;
+    letter-spacing: normal;
+    font-family: monospace;
+   
+    /* text-decoration: underline; */
+}
+
+a {
+    
+    text-decoration: none;
+    font-size: 25px;
+    color: rebeccapurple;
+}

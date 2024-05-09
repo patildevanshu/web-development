@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/action">
+      <label> username <input type="text" placeholder="username" /></label>
+      <br />
+
+      <label>password <input type="password" placeholder="password" /></label>
+
+      <br />
+      time
+      <input type="time" />
+      <br />
+      color
+      <input type="color" />
+      <br />
+      number
+      <input type="number" placeholder="mobile no." />
+      <br />
+      date
+      <input type="date" />
+      <br />
+      <input type="checkbox" name="age" id="age" checked>
+      <label for="age">I am 18+</label>
+      <br />
+      <div> select gender
+        <input type="radio" name="gender" id="male" value="male" >
+        <label for="male">male</label>
+        <input type="radio" name="gender" id="female" value="female">
+        <label for="male">Female</label>
+        <input type="radio" name="gender" id="others" value="others">
+        <label for="others">others</label>
+      </div>
+      <div>
+        <br />
+        chose your subject
+        <input type="checkbox" name="subject" id="maths" value="maths">
+        <label for="maths">maths</label>
+        <input type="checkbox" name="subject" id="ip" value="ip">
+        <label for="ip">ip</label>
+        <input type="checkbox" name="subject" id="ec" value="ec">
+        <label for="ec">ec</label>
+      </div>
+      <div>
+        choose your profession
+        <select name="profession" id="profession">
+          <option>Select your option</option>
+          <option value="stu">Student</option>
+          <option value="eng">Engineer</option>
+        </select>
+      </div>
+      <div>
+        <label for="vol">select volume level</label>
+        <input type="range" min="0" max="100" id="vol" name="vol">
+      </div>
+      <div>
+        <label for="feedback">please give your feedback</label>
+        <textarea name="feedback" id="feedback" cols="" rows="" placeholder="weite your feedback here"></textarea>
+      </div>
+      <!-- button using input -->
+      <input type="button" value="this is only button" />
+      <input type="submit" value="click me" />
+      <input type="submit" />
+      <br />
+      <button type="submit">submit</button>
+      <button type="reset">reset</button>
+      <button type="button">do something</button>
+
+    </form>
+    <br />
+
+    <br />
+    <hr />
+    <form action="/action">
+      <div>
+        <label for="username"> Enter user name:</label>
+        <input type="text" id="username" placeholder="Enter ussername" />
+      </div>
+      <div>
+        <label for="password">Enter password :</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter password"
+          name="user"
+        />
+      </div>
+      <div>
+        <label for="age">Enter age</label>
+        <input type="number" placeholder="Enter age" id="age" name="pass" />
+      </div>
+      <div>
+        <button type="submit">sign in</button>
+      </div>
+    </form>
+    <hr />
+    <form action="https://www.youtube.com/results">
+      <input type="text" placeholder="search in youtube" name="search_query" />
+      <button type="submit">search</button>
+    </form>
+    <hr />
+    <form action="https://www.google.com/search">
+      <input type="text" placeholder="Google search" name="q" />
+      <button>search</button>
+    </form>
+    <hr />
+  </body>
+</html>
