@@ -1,0 +1,36 @@
+#outer {
+    height: 100px;
+    width: 100px;
+    background-color: yellow;
+    border-radius: 50%
+}
+
+#le{
+    height: 15px;
+    width: 15px;
+    background-color: black;
+    position: relative;
+    top: 30px;
+    left: 20px;
+    border-radius: 50%;
+}
+
+#re{
+    height: 15px;
+    width: 15px;
+    background-color: black;
+    position: relative;
+    top: 17px;
+    left: 70px;
+    border-radius: 50%;
+}
+
+#mouth{
+    height: 15px;
+    width: 40px;
+    background-color: black;
+    position: relative;
+    top: 30px;
+    left: 30px;
+    border-radius: 0px 0 10px 10px;
+}

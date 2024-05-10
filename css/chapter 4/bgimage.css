@@ -1,0 +1,8 @@
+div{
+    width: 400px;
+    height: 250px;
+    background-color: #7aab74;
+    margin: 10px auto;
+    background-image: url("flag.png");
+    background-size: cover;;
+}
