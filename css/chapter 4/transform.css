@@ -10,7 +10,7 @@ div {
     border: 2px solid black;
     margin: 10px auto;
 }
-
+ 
 div:nth-last-of-type(2n){
     background-color: #f7db6a;
 }
