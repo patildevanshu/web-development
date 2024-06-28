@@ -17,6 +17,12 @@
 // console.log(math.mul(2,6));
 // console.log(math.mul(2,math.g));
 
-let result = require("./fruits");
+// let result = require("./fruits");
 
-console.log(result);
+// console.log(result);
+
+
+import {sum , mul} from "./math.js";
+
+console.log(sum(1,5));
+console.log(mul(1,5));
