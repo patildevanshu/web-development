@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>this page belongs to @<%= username %></h1>
+    <button>Follow</button>
+    <button>Message</button>
+
+    <h3>Accounts that follows you :</h3>
+    <ul>
+    <% for(let user of followers) { %>
+        <li> <%= user %> </li>
+        <% } %>
+    </ul>
+</body>
+</html>
