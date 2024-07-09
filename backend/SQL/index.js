@@ -108,21 +108,27 @@ app.patch("/users/:id" , (req , res) => {
         if(err) throw err;
         console.log(result[0]);
         let user = result[0];
+        if(password != user.password) {
+          res.send("Password is incorrect!");
+        }
+        else{
+          let update = `UPDATE user SET username =? WHERE id =? AND password =?`
+          try {
+            connection.query(update, [username, id, password], (err, result) => {
+              if(err) throw err;
+              console.log(result);
+              res.redirect("/users");
+            });
+          }  catch (err) {
+              res.send('some erorr in database');
+          }
+        }
       });
     }  catch (err) {
         res.send('some erorr in database');
     }
 
-  let update = `UPDATE user SET username =? WHERE id =? AND password =?`
-  try {
-    connection.query(update, [username, id, password], (err, result) => {
-      if(err) throw err;
-      console.log(result);
-      res.redirect("/users");
-    });
-  }  catch (err) {
-      res.send('some erorr in database');
-  }
+
 });
 
 
