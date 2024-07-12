@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit chat</title>
+</head>
+<body>
+    <h3>Edit your chat</h3>
+    <p>This chat is send from <b> <%= oldChat.from %> </b>  to <b><%= oldChat.to %> </b></p>
+    <form action="/chats/<%= oldChat._id %>?_method=PUT" method="post">
+        <textarea name="msg" rows="7" cols="25" ><%= oldChat.msg %></textarea>
+        <button>Save changes</button>  <!-- This form will submit the edited chat to the server -->  <!-- Add the required route for this action -->  <!-- The server should update the chat in the database -->  <!-- Display a success message upon successful update -->  <!-- Redirect to the chat list page -->  <!-- Ensure the chat list page is updated with the edited chat -->  <!-- Use a proper HTTP method (PUT, PATCH, DELETE) to update the chat -->
+    </form>
+</body>
+</html>
