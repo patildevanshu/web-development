@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wanderLust</title>
+</head>
+<body>
+    <h3>Edit yor listing</h3>
+    <form action="/listings/<%= oldListing._id %>?_method=PUT" method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="<%= oldListing.title %>" >
+        <br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" value="<%= oldListing.description %>" >
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="<%= oldListing.price %>" >
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" value="<%= oldListing.location %>" >
+        <br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" value="<%= oldListing.country %>" >
+        <br>
+        <label for="image">Image Url:</label>
+        <input type="text" id="image" name="image" value="<%= oldListing.image %>" >
+        <br>
+        <button>Submit</button>
+    </form>
+</body>
+</html>
