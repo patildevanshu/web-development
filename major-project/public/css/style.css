@@ -113,7 +113,9 @@ h3 {
 
 /* show page */
 .show-img{
-    height: 30vh !important;
+    margin-left: 14rem;
+    height: 24rem !important;
+    width: 24rem !important;
 }
 
 .btns {

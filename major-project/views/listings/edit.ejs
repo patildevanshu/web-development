@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 <body>
   <h3>Edit yor listing</h3>
-  <form action="/listings/<%= oldListing._id %>?_method=PUT" method="POST">
+  <form action="/listings/<%= oldListing._id %>?_method=PUT" method="POST" class="needs-validation" novalidate >
     <div class="row mt-3">
       <div class="col-8 offset-2">
         <div>
@@ -12,6 +12,7 @@
             id="title"
             name="title"
             value="<%= oldListing.title %>"
+            required
           />
         </div>
         <div>
@@ -21,6 +22,7 @@
             class="form-control"
             id="description"
             name="description"
+            required
             value="<%= oldListing.description %>"
           />
         </div>
@@ -32,6 +34,7 @@
                   class="form-control"
                   id="price"
                   name="price"
+                  required
                   value="<%= oldListing.price %>"
                 />
               </div>
@@ -42,6 +45,7 @@
                   class="form-control"
                   id="country"
                   name="country"
+                  required
                   value="<%= oldListing.country %>"
                 />
               </div>
@@ -54,6 +58,7 @@
             class="form-control"
             id="location"
             name="location"
+            required
             value="<%= oldListing.location %>"
           />
         </div>
@@ -64,6 +69,7 @@
             class="form-control"
             id="image"
             name="image"
+            required
             value="<%= oldListing.image %>"
           />
         </div>

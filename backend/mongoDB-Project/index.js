@@ -41,10 +41,17 @@ async function main() {
 
 
 // Index routes
-app.get('/chats', async (req, res) => {
+app.get('/chats', asyncWrap( async (req, res) => {
   let chats = await chat.find();
   res.render('index.ejs', { chats });
-});
+}));
+
+// function AsyncWrap
+function asyncWrap(fn) {
+  return function(req, res , next) {
+    fn(req , res , next).catch((err) => next(err));
+  }
+};
 
 
 // new routes
@@ -53,7 +60,7 @@ app.get('/chats/new', (req, res) => {
 });
 
 // create routes
-app.post('/chats', async (req, res) => {
+app.post('/chats', asyncWrap(async (req, res) => {
   let {from , to , msg} = (req.body);
   let newChat = new chat({
     from : from ,
@@ -65,7 +72,7 @@ app.post('/chats', async (req, res) => {
   res.redirect('/chats');
   // console.log(newChat);
   // res.send("saved")
-});
+}));
 
 
 // edit routes
