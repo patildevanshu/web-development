@@ -7,6 +7,7 @@ const Listing = require("./models/listing.js");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
+const { listingSchema } = require("./schema.js");
 
 
 app.set("view engine", "ejs");
@@ -14,6 +15,17 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+// validation of create route data
+const validateListing = (req, res, next) => {
+  let { error } = listingSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(" , ");
+    throw new ExpressError(400 , errMsg);
+  } else {
+    next();
+  }
+};
 
 // use ejs-locals for all ejs templates:
 app.engine('ejs', ejsMate);
@@ -43,11 +55,9 @@ app.get("/listings/new" , (req , res) =>{
   res.render("listings/new.ejs");
 });
 
-// Save new route
-app.post("/listings", wrapAsync(async (req, res) =>{
-  if (!req.body) {
-    throw new ExpressError(400 ,"Bad request");
-  }
+// create Save new route
+app.post("/listings", validateListing ,wrapAsync(async (req, res) =>{
+  
   let newListing = new Listing(req.body);
   await newListing.save();
   res.redirect("/listings");
@@ -69,14 +79,14 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 // Edit route
 
-app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
+app.get("/listings/:id/edit" ,wrapAsync(async (req, res) => {
   let { id } = req.params;
   let oldListing = await Listing.findById(id);
   res.render("listings/edit.ejs", { oldListing });
 }));
 
 // update routes
-app.put("/listings/:id", wrapAsync(async (req, res) =>{
+app.put("/listings/:id", validateListing , wrapAsync(async (req, res) =>{
   let { id } = req.params;
   let updatedListing = await Listing.findByIdAndUpdate(id, req.body, { new: true });
   res.redirect(`/listings/${id}`);
