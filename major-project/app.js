@@ -7,6 +7,8 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
+const sessions = require("express-session");
+const flash = require("connect-flash");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -19,6 +21,7 @@ app.use(methodOverride("_method"));
 
 // use ejs-locals for all ejs templates:
 app.engine('ejs', ejsMate);
+
 
 main()
   .then(() => {
@@ -34,6 +37,29 @@ app.get("/", (req, res) => {
   res.redirect("/listings");
 });
 
+
+// session
+const sessionOptions = {
+  secret: "mysupersecretcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { expires:  Date.now() + 1000* 60 * 60 * 24 * 7 ,
+    maxAge: 1000* 60 * 60 * 24 * 7 ,
+    httpOnly: true, // HttpOnly flag makes the cookie inaccessible via client-side JavaScript
+     
+  }, // 1 year
+};
+
+app.use(sessions(sessionOptions));
+app.use(flash());
+
+// 
+app.use((req , res , next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+})
+
 // listing routes
 app.use("/listings", listings);
 
@@ -41,31 +67,11 @@ app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 
 
-
-
-// // testing server
-// app.get("/testListing", async (req, res) => {
-//   let sampleListing = new Listing({
-//     title: "My New Villa",
-//     description: "By the beach",
-//     price: 1200,
-//     location: "Calangute, Goa",
-//     country: "India",
-//   });
-
-//   await sampleListing.save();
-//   console.log("sample was saved");
-//   res.send("successful testing");
-// });
-
 // all routes
 
 app.get("*", (req, res , next) => {
   next(new ExpressError(404 , "page not found"));
 });
-
-// // testing server
-
 
 // Error handler
 app.use((err, req, res , next) =>{

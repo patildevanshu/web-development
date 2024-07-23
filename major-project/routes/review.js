@@ -26,6 +26,7 @@ router.post("/", validateReview , wrapAsync(async (req, res) => {
     listing.review.push(review);
     await review.save();
     await listing.save();
+    req.flash("success", "Review Added Successfully!");
     res.redirect(`/listings/${req.params.id}`);
   }));
   
@@ -35,7 +36,7 @@ router.post("/", validateReview , wrapAsync(async (req, res) => {
   
     await Listing.findByIdAndUpdate(id ,{ $pull :{review : reviewId }});
     await Review.findByIdAndDelete(reviewId);
-  
+    req.flash("success", "Review deleted Successfully!");
     res.redirect(`/listings/${id}`);
     
   }));
