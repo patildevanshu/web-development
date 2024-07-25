@@ -5,8 +5,9 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 const sessions = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -73,23 +74,17 @@ app.use((req , res , next) => {
   next();
 })
 
-// Demo User
-app.get('/demouser', async (req, res) => {
-  let fakeUser = new User({
-    username: "demouser",
-    email: "demouser@example.com"
-  });
 
-  let registeredUser = await User.register(fakeUser , "helloworld");
-  res.send(registeredUser);
-});
+
+// user routes
+app.use("/", userRouter);
 
 
 // listing routes
-app.use("/listings", listings);
+app.use("/listings", listingRouter);
 
 // Review routes
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings/:id/reviews", reviewRouter);
 
 
 // all routes
