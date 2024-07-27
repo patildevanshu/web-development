@@ -120,7 +120,8 @@ h3 {
 
 .btns {
     display: flex !important;
-    justify-content: center !important;
+    /* justify-content: center !important; */
+    margin-left: 14rem !important;
 }
 
 .show-btn {
