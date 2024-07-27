@@ -6,7 +6,13 @@
   <br />
   <div class="row">
     <div class="col-8 offset-2">
-      <form action="/listings" method="post" class="needs-validation" novalidate>
+      <form
+        action="/listings"
+        method="post"
+        class="needs-validation"
+        novalidate
+        enctype="multipart/form-data"
+      >
         <div>
           <label for="title" class="form-label">Title:</label>
           <input
@@ -16,14 +22,10 @@
             class="form-control"
             required
           />
-        
-        <div class="valid-feedback">
-          Title Looks good!
+
+          <div class="valid-feedback">Title Looks good!</div>
+          <div class="invalid-feedback">Please provide a valid Title.</div>
         </div>
-        <div class="invalid-feedback">
-          Please provide a valid Title.
-        </div>
-      </div>
 
         <div>
           <label class="form-label" for="description">Description:</label>
@@ -37,9 +39,7 @@
           <div class="invalid-feedback">
             Please provide a valid Description.
           </div>
-          <div class="valid-feedback">
-            Description Looks good!
-          </div>
+          <div class="valid-feedback">Description Looks good!</div>
         </div>
 
         <div class="row">
@@ -52,9 +52,7 @@
               class="form-control"
               required
             />
-            <div class="invalid-feedback">
-              Please provide a valid price.
-            </div>
+            <div class="invalid-feedback">Please provide a valid price.</div>
           </div>
 
           <div class="col-md-8">
@@ -66,9 +64,7 @@
               class="form-control"
               required
             />
-            <div class="invalid-feedback">
-              Please provide a valid country.
-            </div>
+            <div class="invalid-feedback">Please provide a valid country.</div>
           </div>
         </div>
 
@@ -81,19 +77,12 @@
             class="form-control"
             required
           />
-          <div class="invalid-feedback">
-            Please provide a valid city.
-          </div>
+          <div class="invalid-feedback">Please provide a valid city.</div>
         </div>
 
         <div class="mb-3">
-          <label for="image" class="form-label">Image Url:</label>
-          <input
-            type="text"
-            id="image"
-            name="image"
-            class="form-control"
-          />
+          <label for="image" class="form-label">Upload Listing Image</label>
+          <input type="file" id="image" name="image" class="form-control" />
         </div>
         <button class="btn btn-dark">Submit</button>
       </form>
