@@ -6,17 +6,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/">Home</a>
-          <a class="nav-link" href="/listings">All Listings</a>
-          <a class="nav-link" href="/listings/new">Add New Listings</a>
+          <a class="nav-link" href="/listings">Explore</a>
+         
           <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
         </div>
         <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/listings/new">WanderLust your home</a>
           <% if(!currUser) { %>
-          <a class="nav-link" href="/signup">Sign UP</a>
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/signup"><b>SignUP</b></a>
+          <a class="nav-link" href="/login"><b>Login</b></a>
           <% } %> <% if(currUser) { %>
-          <a class="nav-link" href="/logout">Logout</a>
+          <a class="nav-link" href="/logout"><b>Logout</b></a>
           <% } %>
         </div>
       </div>
