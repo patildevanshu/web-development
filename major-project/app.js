@@ -12,6 +12,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const sessions = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+const dbUrl = process.env.ATLASDB_URL;
 
 
 
@@ -37,17 +39,31 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+  await mongoose.connect(dbUrl);
 }
 
 app.get("/", (req, res) => {
   res.redirect("/listings");
 });
 
+// session
+const store = MongoStore.create({
+  mongoUrl : dbUrl ,
+  crypto: {
+    secret: process.env.SECRET
+  },
+  touchAfter : 24*3600 ,
+});
+
+store.on('error', () =>{
+  console.error('Failed to connect to MongoDB:' , err);
+});
+
 
 // session
 const sessionOptions = {
-  secret: "mysupersecretcode",
+  store : store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { expires:  Date.now() + 1000* 60 * 60 * 24 * 7 ,
@@ -56,6 +72,8 @@ const sessionOptions = {
      
   }, // 1 year
 };
+
+
 
 app.use(sessions(sessionOptions));
 app.use(flash());
