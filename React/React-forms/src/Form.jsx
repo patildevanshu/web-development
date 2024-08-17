@@ -3,7 +3,7 @@ export default function Form(){
         <div>
             <form action="">
                 <input type="text" placeholder="Enter your FullName" />
-                <button>Submit</button>
+                <button>Submit </button>
             </form>
         </div>
     )
